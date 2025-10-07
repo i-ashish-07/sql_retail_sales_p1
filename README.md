@@ -8,13 +8,13 @@ The dataset contains transactional-level sales data with details such as custome
 The goal of this project is to perform **data cleaning, exploration, and business analysis** using SQL queries.
 
 ---
-## 🎯Objectives
+##  Objectives
 1) Set up a retail sales database: Create and populate a retail sales database with the provided sales data.
 2) Data Cleaning: Identify and remove any records with missing or null values.
 3) Exploratory Data Analysis (EDA): Perform basic exploratory data analysis to understand the dataset.
 4) Business Analysis: Use SQL to answer specific business questions and derive insights from the sales data.
    
-## 🗂️ Dataset Structure
+##  Dataset Structure
 The project creates a table named **`sales_analysis`** with the following columns:
 
 | Column           | Description |
@@ -52,7 +52,7 @@ create table sales_analysis (
 ```
 ## Then, import the CSV file into SQL, ensuring the table headings are correctly ordered.
 
-** Next, we will confirm the data import and review the entire table.
+  Next, we will confirm the data import and review the entire table.
 
 ```sql
 
@@ -62,11 +62,11 @@ select * from sales_analysis
 ---
 ## Create a duplicate of the original data for safety before starting the data cleaning process.
 
--* CREATE TABLE sales (LIKE sales_analysis INCLUDING ALL); → creates a new table sales with the same schema/structure (columns, data types, constraints, indexes) as sales_analysis.
+- CREATE TABLE sales (LIKE sales_analysis INCLUDING ALL); → creates a new table sales with the same schema/structure (columns, data types, constraints, indexes) as sales_analysis.
 <br>
--* INSERT INTO sales SELECT * FROM sales_analysis; → copies all the data from sales_analysis into the new sales table.
+- INSERT INTO sales SELECT * FROM sales_analysis; → copies all the data from sales_analysis into the new sales table.
 
-👉 Together, these two steps make a full duplicate (structure + data) of the original table.
+ Together, these two steps make a full duplicate (structure + data) of the original table.
 
 ``` sql
 create table sales
@@ -76,7 +76,7 @@ insert into sales
 select * from sales_analysis;
 ```
 ---
-## 🔧 Data Cleaning
+##  Data Cleaning
 1. Identify missing or null values.
 
 ``` sql
@@ -113,7 +113,7 @@ WHERE transaction_id IS NULL
 
 ---
 
-## 📊 Data Exploration
+##  Data Exploration
 - **Total number of sales**  
 - **Unique customers**  
 - **Unique categories**  
@@ -124,7 +124,7 @@ SELECT COUNT(DISTINCT customer_id) AS unique_customers FROM sales;
 SELECT COUNT(DISTINCT category) AS unique_categories FROM sales;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | total_sales | unique_customers | unique_categories |
 |-------------|------------------|-------------------|
@@ -132,7 +132,7 @@ SELECT COUNT(DISTINCT category) AS unique_categories FROM sales;
 
 ---
 
-## 🧩 Business Analysis – Key Questions
+##  Business Analysis – Key Questions
 
 ### Q1. Write a SQL query to retrieve all columns for sales made on 2022-11-05.
 
@@ -141,7 +141,7 @@ SELECT * FROM sales
 WHERE sale_date = '2022-11-05';
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | transaction_id | sale_date  | sale_time | customer_id | category   | quantity | total_sale |
 |----------------|------------|-----------|-------------|------------|----------|------------|
@@ -159,7 +159,7 @@ WHERE category = 'Clothing'
   AND quantity >= 4;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | transaction_id | sale_date  | customer_id | category | quantity | total_sale |
 |----------------|------------|-------------|----------|----------|------------|
@@ -176,7 +176,7 @@ FROM sales
 GROUP BY category;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | category     | total_sales |
 |--------------|-------------|
@@ -196,7 +196,7 @@ WHERE category = 'Beauty'
 Group by category;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | avg_age | category
 |---------|---------|
@@ -210,7 +210,7 @@ SELECT * FROM sales
 WHERE total_sale > 1000;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | transaction_id | customer_id | category   | total_sale |
 |----------------|-------------|------------|------------|
@@ -228,7 +228,7 @@ GROUP BY gender, category
 ORDER BY category;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | gender | category    | total_transactions |
 |--------|-------------|--------------------|
@@ -255,7 +255,7 @@ WITH monthly_avg AS (
 SELECT * FROM monthly_avg WHERE rank = 1;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | year | month | avg_sale | rank |
 |------|-------|----------|------|
@@ -273,7 +273,7 @@ ORDER BY total_sales DESC
 LIMIT 5;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | customer_id | total_sales |
 |-------------|-------------|
@@ -293,7 +293,7 @@ FROM sales
 GROUP BY category;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | category     | unique_customers |
 |--------------|------------------|
@@ -304,7 +304,7 @@ GROUP BY category;
 ---
 
 ### Q10. Write a SQL query to create each shift and count the number of orders.
------------Example shifts: Morning: < 12 Afternoon: BETWEEN 12 AND 17 Evening: > 17
+Example shifts: Morning: < 12 Afternoon: BETWEEN 12 AND 17 Evening: > 17
 ```sql
 WITH hours AS (
   SELECT *,
@@ -320,7 +320,7 @@ FROM hours
 GROUP BY shift;
 ```
 
-✅ **Sample Output:**
+ **Sample Output:**
 
 | shift     | total_orders |
 |-----------|--------------|
@@ -330,7 +330,7 @@ GROUP BY shift;
 
 ---
 
-## 🔎 Findings
+##  Findings
 
 * **Electronics and Clothing** are the top revenue-generating categories.
 * **Afternoon shift (12–17 hrs)** records the highest number of sales, followed by Evening.
@@ -339,7 +339,7 @@ GROUP BY shift;
 
 ---
 
-## 📑 Reports
+##  Reports
 
 * **Category Sales Report** → Revenue comparison across categories.
 * **Shift Performance Report** → Sales distribution by Morning, Afternoon, and Evening.
@@ -348,16 +348,11 @@ GROUP BY shift;
 
 ---
 
-## 🎯 Conclusion
+##  Conclusion
 
 The sales analysis shows that business growth is primarily driven by Electronics and Clothing, with younger customers contributing strongly to Beauty category sales. Afternoon hours and the holiday season present significant sales opportunities, making them crucial for planning promotions and resource allocation. Additionally, a small set of loyal, high-value customers plays a major role in overall revenue, which highlights the importance of customer retention strategies. Focusing on these insights can help optimize operations, improve customer engagement, and maximize profitability.
 
 ---
-## 💡 Business Recommendations
 
-* Focus on high-performing categories → Increase inventory and targeted promotions for Electronics and Clothing, as they generate the most revenue.
-* Optimize operations during peak hours → Allocate more staff and resources in the Afternoon and Evening shifts to handle higher sales volumes efficiently.
-* Leverage customer loyalty → Introduce loyalty programs or personalized offers for top customers who drive a significant share of sales.
----
 *END OF PROJECT**
 
