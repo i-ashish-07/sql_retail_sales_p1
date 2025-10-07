@@ -128,7 +128,7 @@ SELECT COUNT(DISTINCT category) AS unique_categories FROM sales;
 
 | total_sales | unique_customers | unique_categories |
 |-------------|------------------|-------------------|
-| 15,430      | 2,130            | 6                 |
+| 15,430      | 2,130            | 3                 |
 
 ---
 
