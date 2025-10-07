@@ -353,6 +353,3 @@ GROUP BY shift;
 The sales analysis shows that business growth is primarily driven by Electronics and Clothing, with younger customers contributing strongly to Beauty category sales. Afternoon hours and the holiday season present significant sales opportunities, making them crucial for planning promotions and resource allocation. Additionally, a small set of loyal, high-value customers plays a major role in overall revenue, which highlights the importance of customer retention strategies. Focusing on these insights can help optimize operations, improve customer engagement, and maximize profitability.
 
 ---
-
-*END OF PROJECT**
-
