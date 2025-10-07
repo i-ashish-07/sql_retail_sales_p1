@@ -50,10 +50,22 @@ create table sales_analysis (
 				total_sale int
 );
 ```
+## Then, import the CSV file into SQL, ensuring the table headings are correctly ordered.
 
+** Next, we will confirm the data import and review the entire table.
+
+```sql
+
+select * from sales_analysis
+```
 
 ---
 ## Create a duplicate of the original data for safety before starting the data cleaning process.
+
+-* CREATE TABLE sales (LIKE sales_analysis INCLUDING ALL); → creates a new table sales with the same schema/structure (columns, data types, constraints, indexes) as sales_analysis.
+-* INSERT INTO sales SELECT * FROM sales_analysis; → copies all the data from sales_analysis into the new sales table.
+
+👉 Together, these two steps make a full duplicate (structure + data) of the original table.
 
 ``` sql
 create table sales
@@ -62,10 +74,6 @@ create table sales
 insert into sales
 select * from sales_analysis;
 ```
-
--* We created a sales_analysis table schema within the new sales table to perform data cleaning and analysis.
--* Then, we inserted all values from the original data into the sales table.
-
 ---
 ## 🔧 Data Cleaning
 1. Identify missing or null values.
@@ -295,7 +303,7 @@ GROUP BY category;
 ---
 
 ### Q10. Write a SQL query to create each shift and count the number of orders.
------------Example shifts: Morning: <= 12 Afternoon: BETWEEN 12 AND 17 Evening: > 17
+-----------Example shifts: Morning: < 12 Afternoon: BETWEEN 12 AND 17 Evening: > 17
 ```sql
 WITH hours AS (
   SELECT *,
