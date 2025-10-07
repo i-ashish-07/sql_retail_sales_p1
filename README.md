@@ -15,7 +15,7 @@ The goal of this project is to perform **data cleaning, exploration, and busines
 4) Business Analysis: Use SQL to answer specific business questions and derive insights from the sales data.
    
 ## 🗂️ Dataset Structure
-The project creates a table named **`sales`** with the following columns:
+The project creates a table named **`sales_analysis`** with the following columns:
 
 | Column           | Description |
 |------------------|-------------|
@@ -33,8 +33,59 @@ The project creates a table named **`sales`** with the following columns:
 
 ---
 
+## First, we will create a Table Schema
+```sql
+drop table if exists sales_analysis;
+create table sales_analysis (
+				transaction_id	int primary key,
+				sale_date date,
+				sale_time time,
+				customer_id	 int,
+				gender varchar(50),
+				age	int,
+				category varchar(50),	
+				quantity int,	
+				price_per_unit float,
+				cogs float,
+				total_sale int
+);
+```
+
+
+---
+## Create a duplicate of the original data for safety before starting the data cleaning process.
+
+``` sql
+create table sales
+(like sales_analysis including all);
+
+insert into sales
+select * from sales_analysis;
+```
+
+-* We created a sales_analysis table schema within the new sales table to perform data cleaning and analysis.
+-* Then, we inserted all values from the original data into the sales table.
+
+---
 ## 🔧 Data Cleaning
-1. Identify missing or null values.  
+1. Identify missing or null values.
+
+``` sql
+select * from sales
+where transaction_id is null or 
+sale_date is null or
+sale_time is null or
+customer_id is null or
+gender is null or 
+category is null or 
+quantity is null or 
+price_per_unit is null or 
+cogs is null or 
+total_sale is null;
+```
+
+---
+
 2. Delete incomplete rows to ensure accuracy.  
 
 ```sql
