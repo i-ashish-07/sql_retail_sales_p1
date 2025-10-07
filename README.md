@@ -63,6 +63,7 @@ select * from sales_analysis
 ## Create a duplicate of the original data for safety before starting the data cleaning process.
 
 -* CREATE TABLE sales (LIKE sales_analysis INCLUDING ALL); → creates a new table sales with the same schema/structure (columns, data types, constraints, indexes) as sales_analysis.
+<br>
 -* INSERT INTO sales SELECT * FROM sales_analysis; → copies all the data from sales_analysis into the new sales table.
 
 👉 Together, these two steps make a full duplicate (structure + data) of the original table.
